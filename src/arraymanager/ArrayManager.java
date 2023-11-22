@@ -20,15 +20,47 @@ public class ArrayManager {
     public void setItems(int[] items) {
         this.items = items;
     }
+    
+    // A constructor that accepts an array of integers to be assigned to items
+    public ArrayManager(int[] items) {
+        this.items = items;
+        count = items.length;
+    }
 
+    // A parameterless constructor that sets count to 0 and sizes the array to 10.
     public ArrayManager() {
         items = new int[10];
         count = 0;
     }
-
-    public ArrayManager(int[] items) {
-        this.items = items;
+    
+    // A constructor that accepts an integer and sizes the array.
+    public ArrayManager(int itemNumber) {
+        items = new int[itemNumber];
         count = items.length;
+    }
+    
+    // returns the size of the populated elements array
+    // ------------------------------------------------
+    // return - integer size of the array tracked with count
+    public int size(){
+        return count;
+    }
+    
+    //prints out all elements in the array
+    public void printArray(){
+        for(int i = 0; i < items.length; i++)
+        {
+            System.out.println("items["+i+"]: "+ items[i]);
+        }
+    }
+    
+    //prints out only the items that are populated
+    public void printItems()
+    {
+        for(int i = 0; i < count; i++)
+        {
+            System.out.println("items["+i+"]: "+ items[i]);
+        }
     }
     
     //this function adds an item to the end of our array
@@ -58,34 +90,7 @@ public class ArrayManager {
         //save the new array over the old array
         items = newItems;
     }
-    
-    //prints out all elements in the array
-    public void printArray()
-    {
-        for(int i = 0; i < items.length; i++)
-        {
-            System.out.println("items["+i+"]: "+ items[i]);
-        }
-    }
-    
-    //prints out only the items that are populated
-    public void printItems()
-    {
-        for(int i = 0; i < count; i++)
-        {
-            System.out.println("items["+i+"]: "+ items[i]);
-        }
-    }
-    
-    // returns the size of the populated elements array
-    // ------------------------------------------------
-    // return - integer size of the array tracked with count
-    public int size()
-    {
-        return count;
-    }
-    
-    
+
     //removes an element from the array and moves everything after up by one
     //---------------------------------------------------------------------
     // int pos - the position of the element to remove
@@ -156,51 +161,5 @@ public class ArrayManager {
             return true;
         else
             return false;
-    }
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        
-        ArrayManager am = new ArrayManager();
-        
-        //add the numbers 1-11 to our array
-        for(int i = 1; i <= 10; i++)
-        {
-            am.add(i);
-        }
-        
-        //print out array
-        System.out.println("-------Print items---------");
-        am.printItems();
-        
-        System.out.println("-------Remove item---------");
-        try
-        {
-            am.remove(3);
-        }
-        catch(NoItemsException nie)
-        {
-            System.out.println("There are no items to remove");
-        }
-        
-        System.out.println("-------Add item---------");
-        try
-        {
-            am.addAt(1000, 15);
-        }
-        catch(OutOfBoundsException oobe)
-        {
-            System.out.println(oobe.getMessage());
-        }
-            
-        //print out array
-        System.out.println("-------Print items---------");
-        am.printItems();
-        
-        System.out.println("-------Print Array---------");
-        am.printArray();
-    }
-    
+    } 
 }
