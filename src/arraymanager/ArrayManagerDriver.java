@@ -59,8 +59,8 @@ public class ArrayManagerDriver {
         am = new ArrayManager(items);
         int selectedOption = 1;
         do {
-            System.out.println("Select from the following options");
-            System.out.println("1. Display number or items");
+            System.out.println("\nSelect from the following options");
+            System.out.println("1. Display number of items");
             System.out.println("2. Display all items");
             System.out.println("3. Add an item");
             System.out.println("4. Add item at position");
@@ -86,8 +86,12 @@ public class ArrayManagerDriver {
                 case 5:
                     removeItem();
                     break;
+                case 6:
+                    System.exit(0);
+                default:
+                    System.out.println("Selected option out of bounds\n");
             }
-        } while (selectedOption > 0 || selectedOption < 6);
+        } while (selectedOption > 0 || selectedOption <= 6);
         
         
     }   

@@ -101,21 +101,32 @@ public class ArrayManager {
             throw new NoItemsException();
         }
         
+        
         // if the item requested it outside of the bounds of our array do not perform this action
         if(pos < count)
         {
-            // if we are removing the last element, we dont need to replace the data
-            if(pos != count-1)
-            {
+            // if we are not removing the last element, we need to replace the data on other positions
+            if(pos != count-1){
                // shift all elements up
                 for(int i = pos; i < count - 1; i++)
                 {
                     items[i] = items[i+1];
-                } 
+                }
+                // set the last element to 0 since it was copied on the previous function
+                items[count-1] = 0;
+            }
+            // if removing the last element just set it to 0
+            else {
+                System.out.println("pos " + pos + " - count " + count);
+                items[pos] = 0;
             }
 
             // lower count 
             count--;
+        }
+        // print message if selected position is greater thab count
+        else {
+            System.out.println("Cannot add item to position outside of array");
         }
     }
     
@@ -146,7 +157,6 @@ public class ArrayManager {
 
         // add element at position
         items[pos] = n;
-
         // increase count
         count ++;
 
